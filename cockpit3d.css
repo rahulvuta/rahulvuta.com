@@ -1,0 +1,162 @@
+/* The DOM displays are individual surfaces in the 3D cabin. */
+#cockpit-webgl,#cockpit-surfaces{position:absolute;inset:0;width:100%;height:100%;display:none}
+#cockpit-webgl{z-index:3}
+#cockpit-surfaces{z-index:4;pointer-events:none}
+#flight-hud{display:none}
+body:not(.spatial-active) #cockpit-webgl,body:not(.spatial-active) #cockpit-surfaces{display:none!important}
+.spatial-active .world{height:100dvh;min-height:0;perspective:none;background:#08121d}
+.spatial-active .world:before{z-index:6;background:radial-gradient(ellipse at center,transparent 50%,#02091277 100%)}
+.spatial-active .world:after{opacity:.035;z-index:6}
+.spatial-active #scene,.spatial-active .world>.stars{display:none}
+.spatial-active #cockpit-webgl,.spatial-active #cockpit-surfaces{display:block}
+.spatial-active .spatial-surface{pointer-events:auto;transform-origin:50% 50%!important;backface-visibility:hidden;box-sizing:border-box}
+.spatial-active .spatial-forward{display:flex;padding:0;max-width:none;min-height:0;filter:none}
+.spatial-active .spatial-forward .display-brow{height:26px;background:none;border:0;box-shadow:none;padding:0 18px;color:#addfe7;font-size:11px;letter-spacing:.16em}
+.spatial-active .spatial-forward .display-brow .brow-number{color:#7ac1ca}
+.spatial-active .spatial-forward .display-outer{padding:0;background:none;border:0;box-shadow:none}
+.spatial-active .spatial-forward .display-outer:before,.spatial-active .spatial-forward .display-outer:after{display:none}
+.spatial-active .spatial-forward .display-bezel-top{height:23px;padding:0 20px;color:#90cfda;font-size:10px}
+.spatial-active .spatial-forward .display-bezel-bottom{height:25px;padding:0 20px;font-size:10px;color:#7cbdc7}
+.spatial-active .spatial-forward .holo-display{border:1px solid #83edf3a1;border-radius:17px 17px 12px 12px / 5px 5px 5px 5px;background:radial-gradient(ellipse at 50% 50%,#0f415ce6 0%,#082a43e0 55%,#061c30c7 100%);box-shadow:inset 0 0 28px #68ddec1c,0 0 20px #62d6ef3c,0 0 60px #41badc22}
+.spatial-active .spatial-forward .holo-display:after{background:radial-gradient(ellipse at center,transparent 60%,#03112166 100%)}
+.spatial-active .spatial-forward .holo-grid{opacity:.4;background-size:44px 44px}
+.spatial-active .spatial-forward .holo-topline,.spatial-active .spatial-forward .holo-bottomline{height:33px;padding:0 28px;font-size:10px;letter-spacing:.1em}
+.spatial-active .spatial-forward .holo-content{height:calc(100% - 66px);padding:25px 40px 30px}
+.spatial-active .spatial-forward .center-subdeck{height:28px;background:none;border:0;box-shadow:none;border-radius:0;font-size:10px;color:#8bc6d2}
+.spatial-active .spatial-forward .subdeck-center{font-size:10px}
+.spatial-active .spatial-forward .home-module{padding:6px 0 52px;grid-template-columns:1fr 36%;align-items:center;min-height:100%}
+.spatial-active .spatial-forward .home-heading{margin:18px 0 14px}
+.spatial-active .spatial-forward .home-heading h1{font-size:112px;line-height:.81}
+.spatial-active .spatial-forward .home-heading>span{font-size:13px}
+.spatial-active .spatial-forward .home-roles{font-size:13px;line-height:1.55;margin:13px 0}
+.spatial-active .spatial-forward .home-description{font-size:18px;line-height:1.45;max-width:610px;margin:10px 0 22px}
+.spatial-active .spatial-forward .home-actions{gap:20px}
+.spatial-active .spatial-forward .primary-command{min-height:43px;font-size:12px;padding:0 19px}
+.spatial-active .spatial-forward .text-command{font-size:12px}
+.spatial-active .spatial-forward .home-graphic{width:315px}
+.spatial-active .spatial-forward .graphic-readout{font-size:10px}
+.spatial-active .spatial-forward .home-status{display:flex;padding-top:12px;font-size:11px}
+.spatial-active .spatial-forward .home-status button{font-size:11px}
+.spatial-active .spatial-forward .module-kicker{font-size:12px}
+.spatial-active .spatial-forward .module-heading h1{font-size:52px;margin:10px 0}
+.spatial-active .spatial-forward .module-heading p{font-size:17px}
+.spatial-active .spatial-forward .project-overline{font-size:11px}
+.spatial-active .spatial-forward .project-intro{display:grid;grid-template-columns:1fr auto;gap:18px;padding-bottom:15px}
+.spatial-active .spatial-forward .project-intro>p{font-size:16px;max-width:570px}
+.spatial-active .spatial-forward .metric{min-width:100px;padding:8px 12px}
+.spatial-active .spatial-forward .metric strong{font-size:29px}
+.spatial-active .spatial-forward .metric span{font-size:10px}
+.spatial-active .spatial-forward .project-visual{min-height:168px;margin:10px 0 19px;padding:13px 20px}
+.spatial-active .spatial-forward .visual-label,.spatial-active .spatial-forward .visual-footer{font-size:10px}
+.spatial-active .spatial-forward .college-diagram{padding:15px 0 27px;gap:18px}
+.spatial-active .spatial-forward .diagram-node{min-width:117px;height:73px;font-size:13px}
+.spatial-active .spatial-forward .diagram-node small{font-size:9px}
+.spatial-active .spatial-forward .core-node{min-width:165px}
+.spatial-active .spatial-forward .diagram-path{min-width:73px}
+.spatial-active .spatial-forward .outcome-list{min-width:150px;font-size:10px}
+.spatial-active .spatial-forward .project-facts span,.spatial-active .spatial-forward .project-story span{font-size:10px}
+.spatial-active .spatial-forward .project-facts strong{font-size:14px}
+.spatial-active .spatial-forward .project-story p{font-size:15px}
+.spatial-active .spatial-forward .record-module{max-width:none}
+.spatial-active .spatial-forward .profile-details strong{font-size:17px}
+.spatial-active .spatial-forward .profile-details span,.spatial-active .spatial-forward .chip-section>span{font-size:11px}
+.spatial-active .spatial-forward .profile-details p{font-size:16px}
+.spatial-active .spatial-forward .skill-chips b{font-size:14px}
+.spatial-active .spatial-forward .profile-portrait{height:210px}
+.spatial-active .spatial-forward .profile-layout{grid-template-columns:185px 1fr}
+.spatial-active .spatial-forward .education-columns p,.spatial-active .spatial-forward .cert-card p,.spatial-active .spatial-forward .resume-note{font-size:14px}
+.spatial-active .spatial-forward .achievement strong{font-size:20px}
+.spatial-active .spatial-forward .achievement div span,.spatial-active .spatial-forward .achievement small{font-size:13px}
+.spatial-active .spatial-forward .comms-link strong{font-size:24px}
+.spatial-active .spatial-forward .comms-link em{font-size:14px}
+.spatial-active .spatial-forward .comms-link small{font-size:11px}
+.spatial-active .spatial-forward .timeline-entry p{font-size:18px}
+
+.spatial-active .spatial-port,.spatial-active .spatial-starboard{padding:22px 24px;display:flex;flex-direction:column;border:1px solid #789ead80;border-radius:10px;background:linear-gradient(130deg,#253d4cf2,#172d3df9 35%,#152938f9);box-shadow:inset 0 1px #a4c5cc5e,inset 0 0 22px #081622,0 0 10px #0006;overflow:hidden}
+.spatial-active .side-console:before{inset:9px;border-color:#97b6be35}
+.spatial-active .console-header{gap:14px;padding:6px 4px 16px}
+.spatial-active .console-header .eyebrow{font-size:11px}
+.spatial-active .console-header h2{font-size:28px;margin-top:5px}
+.spatial-active .header-icon{width:48px;height:48px;font-size:32px}
+.spatial-active .console-mini-display{margin:18px 2px 12px;padding:12px 14px}
+.spatial-active .display-top b{font-size:12px}
+.spatial-active .display-top i{font-size:10px}
+.spatial-active .display-bottom{font-size:10px}
+.spatial-active .waveform{height:35px;gap:7px}
+.spatial-active .console-section-label{font-size:11px;margin:12px 3px 9px}
+.spatial-active .physical-list{display:flex;gap:10px;overflow:visible}
+.spatial-active .physical-button.project-button{min-height:89px;padding:11px 15px;gap:14px;border-bottom-width:6px}
+.spatial-active .project-button .button-face strong{font-size:27px}
+.spatial-active .project-button .button-face small{font-size:10px}
+.spatial-active .button-led{width:13px;height:13px}
+.spatial-active .button-chevron{font-size:25px}
+.spatial-active .console-fill{display:flex;min-height:35px}
+.spatial-active .rail-marking,.spatial-active .cable-wrap{display:none}
+.spatial-active .port-stamp{font-size:11px;padding:10px 12px}
+.spatial-active .pilot-id{margin:14px 1px 8px;padding:11px;gap:12px}
+.spatial-active .id-avatar{width:51px;height:51px;font-size:23px}
+.spatial-active .pilot-id .eyebrow{font-size:9px}
+.spatial-active .pilot-id strong{font-size:15px}
+.spatial-active .pilot-id small{font-size:9px}
+.spatial-active .record-list{gap:6px;overflow:auto;min-height:0}
+.spatial-active .physical-button.record-button{min-height:44px;padding:6px 11px;gap:12px;border-bottom-width:4px}
+.spatial-active .record-button .button-face{flex-direction:row;align-items:center;gap:10px}
+.spatial-active .record-button .button-face strong{font-size:17px}
+.spatial-active .record-button .button-face small{display:block;font-size:9px;min-width:48px}
+.spatial-active .right-low-display{margin-top:16px;padding:10px 13px;font-size:10px}
+.spatial-active .right-low-display small{font-size:9px}
+.spatial-active .right-low-display .uplink-bars{height:19px}
+.spatial-active .console-screw{display:none}
+.spatial-active .spatial-overhead{margin:0;padding:24px 32px;min-height:0;clip-path:none;border-radius:9px;display:grid;grid-template-columns:1fr 1.35fr;gap:20px;background:linear-gradient(#304956,#172c3b);border:1px solid #708e9a;box-shadow:inset 0 1px #a4c5cc88,inset 0 -6px #102330}
+.spatial-active .spatial-overhead .porthole{display:none}
+.spatial-active .spatial-overhead .brand-mark{width:61px;height:61px;font-size:24px}
+.spatial-active .spatial-overhead .overhead-brand{gap:27px}
+.spatial-active .spatial-overhead .overhead-brand strong{font-size:22px}
+.spatial-active .spatial-overhead .overhead-brand small{font-size:11px}
+.spatial-active .spatial-overhead .aux-label{font-size:11px}
+.spatial-active .spatial-overhead .light-modes button{font-size:12px;padding:12px 13px}
+.spatial-active .spatial-overhead .aux-button{font-size:12px;min-height:46px;padding:0 15px}
+.spatial-active .spatial-lower{margin:0;padding:25px 35px;min-height:0;display:grid;grid-template-columns:1fr auto auto 1fr;gap:27px;border:1px solid #7a99a4;border-radius:12px;background:linear-gradient(#2f4858,#142b3a);box-shadow:inset 0 1px #9fbac6,inset 0 -7px #0c1c28}
+.spatial-active .spatial-lower .cluster-label{font-size:11px;margin-bottom:15px}
+.spatial-active .spatial-lower .quick-nav button{min-height:43px;min-width:80px;font-size:12px}
+.spatial-active .spatial-lower .thruster-track{width:73px;height:43px}
+.spatial-active .spatial-lower .thruster-handle{width:29px;height:33px}
+.spatial-active .spatial-lower .thruster-switch[aria-pressed=true] .thruster-handle{transform:translateX(32px)}
+.spatial-active .spatial-lower .thruster-text{font-size:12px}
+.spatial-active .spatial-lower .lower-grip span{height:40px;width:12px}
+.spatial-active #flight-hud{position:fixed;z-index:20;bottom:20px;left:22px;right:22px;display:flex;align-items:center;gap:16px;pointer-events:none;color:#b3ccd4;font:10px 'Space Mono',monospace;letter-spacing:.09em}
+.spatial-active #flight-hud .view-controls{display:flex;gap:4px;pointer-events:auto}
+.spatial-active #flight-hud button{padding:9px 11px;border:1px solid #7899a44f;background:#0b1d2abb;color:#b9d6dc;backdrop-filter:blur(8px);font:10px 'Space Mono';letter-spacing:.04em;transition:color .15s,background .15s;text-shadow:0 1px #000;white-space:nowrap}
+.spatial-active #flight-hud button:hover,.spatial-active #flight-hud button:focus-visible{color:#edffff;border-color:#98e2e2;background:#163c4b}
+.spatial-active #flight-hud nav{display:flex;margin-left:auto;gap:4px;pointer-events:auto}
+.spatial-active .look-readout{font-size:9px;color:#94b8c4}
+.spatial-active .look-hint{position:fixed;bottom:63px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.18em;color:#c5dce0a8;text-shadow:0 1px 4px #000;white-space:nowrap}
+.spatial-active #flight-hud[data-manual=true] .look-hint{opacity:.35}
+.spatial-active #cockpit-webgl{animation:cabin-materialize .75s ease both}
+@keyframes cabin-materialize{from{opacity:.35}to{opacity:1}}
+@media(min-width:981px) and (max-width:1200px){.spatial-active #flight-hud{gap:8px;left:14px;right:14px}.spatial-active #flight-hud button{font-size:9px;padding:8px}.spatial-active .look-readout{display:none}}
+@media(prefers-reduced-motion:reduce){.spatial-active #cockpit-webgl{animation:none}.spatial-active .look-hint{display:none}}
+.spatial-active .spatial-forward .home-module{grid-template-rows:1fr auto;padding:6px 0 0}
+.spatial-active .spatial-forward .home-status{position:relative;bottom:auto;grid-column:1/-1;margin-top:14px;padding-bottom:3px}
+.spatial-active .spatial-forward .home-heading h1{font-size:104px}
+.spatial-active .physical-button.project-button{min-height:82px}
+.spatial-active .spatial-starboard .console-header{padding-bottom:10px}
+.spatial-active .spatial-starboard .header-icon{width:42px;height:42px}
+.spatial-active .spatial-starboard .pilot-id{margin:10px 1px 6px;padding:8px}
+.spatial-active .spatial-starboard .id-avatar{width:44px;height:44px}
+.spatial-active .spatial-starboard .console-section-label{margin:8px 3px 6px}
+.spatial-active .spatial-starboard .record-list{gap:4px}
+.spatial-active .spatial-starboard .record-button{min-height:40px;padding:4px 10px}
+.spatial-active .spatial-starboard .right-low-display{margin-top:10px;padding:7px 10px;font-size:9px}
+.spatial-active .spatial-starboard .right-low-display .uplink-bars{height:12px;margin:2px 0 3px}
+.spatial-active .spatial-starboard .right-low-display small{font-size:8px}
+.spatial-active .world:not([data-view=forward]) .look-hint{display:none}
+
+/* Translate the prepainted scan band instead of repainting its top position. */
+.holo-scan{animation-name:screen-scan-composited;will-change:transform}
+@keyframes screen-scan-composited{to{transform:translateY(857.142857%)}}
+.spatial-active[data-light=red] .spatial-overhead{animation:none}
+.spatial-active[data-light=red] .spatial-overhead:after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 28px #e26c694d,0 0 16px #a03c3a;opacity:0;animation:alert-pulse-composited 3s ease-in-out infinite;will-change:opacity}
+@keyframes alert-pulse-composited{50%{opacity:1}}
+body.page-hidden *,body.page-hidden *:before,body.page-hidden *:after,
+.spatial-active .spatial-surface[data-visible=false] *,.spatial-active .spatial-surface[data-visible=false] *:before,.spatial-active .spatial-surface[data-visible=false] *:after{animation-play-state:paused!important}

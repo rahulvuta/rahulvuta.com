@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b141e">
+  <meta name="description" content="Explore the cockpit portfolio of Rahul Vuta: software developer, AI builder, and aspiring founder.">
+  <title>Rahul Vuta — Cockpit Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./cockpit3d.css">
+  <script type="module" src="./runtime.js"></script>
+</head>
+<body data-light="normal" data-thrust="off">
+  <a class="skip-link" href="#holo-content">Skip to portfolio content</a>
+  <div class="world" id="world">
+    <div class="stars stars-back" aria-hidden="true"></div>
+    <div class="stars stars-front" aria-hidden="true"></div>
+    <div class="cockpit-scene" id="scene">
+      <div class="hull-arch hull-arch-left" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="hull-arch hull-arch-right" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="cockpit">
+        <div class="ceiling-rib" aria-hidden="true"><span>RV-01</span><span>SOLO EXPLORATION CRAFT</span><span>EST. 2026</span></div>
+
+        <header class="overhead panel-metal" aria-label="Auxiliary cockpit controls">
+          <div class="overhead-brand"><button class="brand-mark" type="button" aria-label="RV-01 craft emblem">R<span>V</span></button><span><strong>RV / 01</strong><small>PERSONAL EXPLORATION CRAFT</small></span></div>
+          <div class="porthole" aria-label="Small viewport showing stars in deep space"><div class="porthole-glass"><span class="distant-planet"></span><span class="orbit-line"></span></div><span class="porthole-label">VIEWPORT / FORWARD</span></div>
+          <div class="aux-controls">
+            <div class="aux-group"><span class="aux-label">CABIN LIGHT</span><div class="light-modes" role="group" aria-label="Cabin lighting mode"><button type="button" data-light-mode="normal" class="active" aria-pressed="true">NORM</button><button type="button" data-light-mode="night" aria-pressed="false">NIGHT</button><button type="button" data-light-mode="red" aria-pressed="false">ALERT</button></div></div>
+            <button class="aux-button" id="diagnostics-toggle" type="button" aria-pressed="false"><span class="mini-led"></span><span>DIAGNOSTICS</span></button>
+            <button class="aux-button audio-button" id="audio-toggle" type="button" aria-pressed="false" aria-label="Turn ambient audio on"><span class="speaker-icon" aria-hidden="true">◖</span><span>AUDIO <b id="audio-state">OFF</b></span></button>
+          </div>
+        </header>
+
+        <div class="cockpit-body">
+          <aside class="side-console side-console-left panel-metal" aria-label="Project systems">
+            <div class="console-corner" aria-hidden="true"></div>
+            <div class="console-header"><div class="header-icon" aria-hidden="true">⌁</div><div><span class="eyebrow">PORT CONSOLE / 01</span><h2>Build archive</h2></div></div>
+            <div class="console-mini-display"><span class="display-top"><b>PROJECT SYSTEMS</b><i>● ONLINE</i></span><div class="waveform" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="display-bottom">04 RECORDS AVAILABLE <b>▰▰▰▰▰</b></span></div>
+            <div class="console-section-label"><span>SELECT MODULE</span><span>01—04</span></div>
+            <div class="physical-list" id="project-buttons"></div>
+            <div class="console-fill left-fill"><div class="rail-marking">CHRONOLOGY // BUILT TO EXPLORE</div><div class="cable-wrap" aria-hidden="true"><span></span><span></span><span></span></div><div class="port-stamp">MISSION ARCHIVE <b>↗</b></div></div>
+            <div class="console-screw screw-a" aria-hidden="true"></div><div class="console-screw screw-b" aria-hidden="true"></div>
+          </aside>
+
+          <main class="command-center" id="main">
+            <div class="display-brow"><span class="brow-lights" aria-hidden="true"><i></i><i></i><i></i></span><span>PRIMARY COMMAND DISPLAY</span><span class="brow-number">HUD // 001</span></div>
+            <div class="display-outer">
+              <div class="display-bezel-top"><span>HOLOGRAPHIC PROJECTION ARRAY</span><span id="module-status">SYSTEM READY</span></div>
+              <div class="holo-display" id="holo-display">
+                <div class="holo-grid" aria-hidden="true"></div>
+                <div class="holo-scan" aria-hidden="true"></div>
+                <div class="holo-particles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="holo-topline"><span><i class="status-pulse"></i> RV-01 / ACTIVE SESSION</span><span id="holo-clock">SOL 001 • 00:00:00</span></div>
+                <section class="holo-content" id="holo-content" aria-live="polite" aria-atomic="true"></section>
+                <div class="holo-bottomline"><span>← PORT / BUILD ARCHIVE</span><span class="holo-signal" id="holo-cue" aria-hidden="true">▂ ▄ ▆ ▄ ▇ ▃ ▅ ▂</span><span>PROFILE / STARBOARD →</span></div>
+                <div class="screen-corner corner-tl" aria-hidden="true"></div><div class="screen-corner corner-tr" aria-hidden="true"></div><div class="screen-corner corner-bl" aria-hidden="true"></div><div class="screen-corner corner-br" aria-hidden="true"></div>
+              </div>
+              <div class="display-bezel-bottom"><span>RV / PROJECTION SYSTEM</span><div class="bezel-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>LINK STABLE <b>●</b></span></div>
+            </div>
+            <div class="center-subdeck panel-metal"><div><span class="subdeck-led" aria-hidden="true"></span><span>COCKPIT ONLINE</span></div><div class="subdeck-center">MOVE CURSOR TO LOOK AROUND <span aria-hidden="true">✳</span></div><div>COORDINATES <b>35.00° N</b></div></div>
+          </main>
+
+          <aside class="side-console side-console-right panel-metal" aria-label="Pilot records and communications">
+            <div class="console-corner" aria-hidden="true"></div>
+            <div class="console-header"><div class="header-icon header-icon-right" aria-hidden="true">✳</div><div><span class="eyebrow">STARBOARD CONSOLE / 02</span><h2>Pilot records</h2></div></div>
+            <div class="pilot-id"><div class="id-avatar" aria-hidden="true"><span>RV</span><i></i></div><div><span class="eyebrow">IDENTITY VERIFIED</span><strong>RAHUL VUTA</strong><small>SOFTWARE DEVELOPER</small></div><span class="id-check">✓</span></div>
+            <div class="console-section-label"><span>PERSONNEL FILES</span><span>01—08</span></div>
+            <div class="physical-list record-list" id="record-buttons"></div>
+            <div class="right-low-display"><div><span>UPLINK STATUS</span><b>CONNECTED</b></div><div class="uplink-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><small>OPEN TO NEW MISSIONS</small></div>
+            <div class="console-screw screw-a" aria-hidden="true"></div><div class="console-screw screw-b" aria-hidden="true"></div>
+          </aside>
+        </div>
+
+        <div class="lower-deck panel-metal">
+          <div class="lower-grip" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="nav-cluster"><span class="cluster-label">QUICK ACCESS / FLIGHT DECK</span><nav class="quick-nav" aria-label="Quick navigation"><button type="button" data-module="home" class="active">HOME</button><button type="button" data-module="chancify">PROJECTS</button><button type="button" data-module="profile">PROFILE</button><button type="button" data-module="resume">RESUME</button><button type="button" data-module="comms">COMMS</button></nav></div>
+          <div class="thruster-cluster"><span class="cluster-label">AUX / PROPULSION</span><button class="thruster-switch" id="thruster-toggle" type="button" aria-pressed="false"><span class="thruster-track"><span class="thruster-handle"></span></span><span class="thruster-text">THRUSTERS <b id="thruster-state">OFF</b></span></button></div>
+          <div class="lower-grip lower-grip-right" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="seat-edge seat-left" aria-hidden="true"></div><div class="seat-edge seat-right" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="diagnostics-overlay" id="diagnostics-overlay" hidden><div class="diagnostics-card"><div class="diagnostics-head"><span>RV-01 / LIVE DIAGNOSTICS</span><button type="button" id="diagnostics-close" aria-label="Close diagnostics">×</button></div><h2>All systems nominal.</h2><dl><div><dt>FRAME RATE</dt><dd id="render-fps">READY</dd></div><div><dt>PROJECTION</dt><dd>STABLE</dd></div><div><dt>DEPLOYMENTS</dt><dd>NOMINAL</dd></div><div><dt>COFFEE RESERVES</dt><dd>82%</dd></div><div><dt>BUGS</dt><dd>CLASSIFIED</dd></div></dl><p>Craft built with HTML, CSS, JavaScript, and an unreasonable number of tiny details.</p></div></div>
+    <div class="boot-overlay" id="boot-overlay" hidden><div class="boot-core"><div class="boot-emblem">RV<span>01</span></div><div class="boot-progress"><span></span></div><div class="boot-lines"><span>POWER BUS ............. OK</span><span>NAVIGATION ............ ONLINE</span><span>MISSION DATABASE ...... ONLINE</span></div><strong>PILOT PROFILE FOUND</strong><h2>RAHUL VUTA</h2><small>WELCOME ABOARD</small></div><button type="button" id="skip-boot">SKIP INTRO ↗</button></div>
+  </div>
+</body>
+</html>
