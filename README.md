@@ -1,5 +1,7 @@
 # Rahul Vuta’s cockpit portfolio
 
+[Live site](https://rahul-vuta-portfolio.onrender.com/) · [GitHub repository](https://github.com/rahulvuta/rahulvuta.com)
+
 The desktop site puts a seated camera inside a Three.js spacecraft. Moving the cursor turns the camera up to 56 degrees in either direction. The hull and consoles stay fixed around the visitor. Portfolio text and controls are DOM surfaces placed in the same scene.
 
 On mobile, the site uses stacked consoles. The deployed site is static.
@@ -38,6 +40,8 @@ npm run build
 ```
 
 Publish `out/`. `render.yaml` configures a static site with this build command and automatic deployment from `main` once the repository is connected to Render.
+
+The Render service `rahul-vuta-portfolio` is connected to `main` with deployment on each commit, build command `npm run build`, and publish directory `out`.
 
 To inspect the production output locally:
 
